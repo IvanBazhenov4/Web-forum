@@ -15,7 +15,7 @@ function App() {
         <BrowserRouter>
             <Navbar/>
             <div>
-                1234567
+                12345678
             </div>
             <Routes>
                 <Route path="/about"  element={<about/>}/>
