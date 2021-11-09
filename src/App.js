@@ -1,10 +1,10 @@
 import React from 'react';
 import './style/App.css';
-import {BrowserRouter as Router,
-    Redirect,
+import {
+    BrowserRouter, Navigate,
     Route,
-    Routes
-    } from "react-router-dom";
+    Routes,
+} from "react-router-dom";
 import about from "./pages/about";
 import Posts from "./pages/Posts";
 import Navbar from "./component/UI/navbar/navbar";
@@ -12,18 +12,20 @@ import Navbar from "./component/UI/navbar/navbar";
 
 function App() {
     return(
-        <Router>
+        <BrowserRouter>
             <Navbar/>
             <div>
+                123
+            </div>
             <Routes>
                 <Route path="/about"  element={<about/>}/>
-                {/*<Route path='/Posts'>*/}
-                {/*    <Posts/>*/}
-                {/*</Route>*/}
+                <Route path='/Posts'>
+                    <Posts/>
+                </Route>
                 {/*<Redirect to='/posts'/>*/}
+                <Navigate to='/posts'/>/>
             </Routes>
-            </div>
-        </Router>
+        </BrowserRouter>
     )
 }
 export default App;
