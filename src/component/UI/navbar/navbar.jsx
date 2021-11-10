@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Route, BrowserRouter } from 'react-router-dom';
+import {Link, Route, Routes} from 'react-router-dom';
 import about from "../../../pages/about";
 import Posts from "../../../pages/Posts";
 
@@ -10,11 +10,12 @@ const Navbar = () => {
                 <Link to="/about">Saite</Link>
                 <Link to="/Posts">Pages</Link>
             </div>
-
-            <Route path="/about"  component={about}/>
-            <Route path='/Posts'>
-                <Posts/>
-            </Route>
+            <Routes>
+                <Route path="/about"  component={about}/>
+                <Route path='/Posts'>
+                    <Posts/>
+                </Route>
+            </Routes>
         </div>
     );
 };
