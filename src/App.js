@@ -1,29 +1,31 @@
 import React from 'react';
 import './style/App.css';
-import {BrowserRouter as Router,
-    Redirect,
+import {
+    BrowserRouter, Navigate,
     Route,
-    Routes
-    } from "react-router-dom";
-import about from "./pages/about";
+    Routes,
+} from "react-router-dom";
+import About from "./pages/About";
 import Posts from "./pages/Posts";
 import Navbar from "./component/UI/navbar/navbar";
+import Erros from "./pages/Erros";
 
 
 function App() {
     return(
-        <Router>
+        <BrowserRouter>
             <Navbar/>
             <div>
-            <Routes>
-                <Route path="/about"  element={<about/>}/>
-                {/*<Route path='/Posts'>*/}
-                {/*    <Posts/>*/}
-                {/*</Route>*/}
-                {/*<Redirect to='/posts'/>*/}
-            </Routes>
+                123
+
             </div>
-        </Router>
+            <Routes>
+                <Route path="/about"  element={<About/>}/>
+                <Route path='/Posts' element={<Posts/>}/>
+                <Route path='/erros' element={<Erros/>}/>
+                <Navigate to='/erros'/>/>
+            </Routes>
+        </BrowserRouter>
     )
 }
 export default App;
