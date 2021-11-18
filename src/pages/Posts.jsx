@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {useEffect, useState} from "react";
 import {usePosts} from "../hooks/useDodo";
 import {useFetching} from "../hooks/useFetching";
@@ -11,48 +11,51 @@ import Ferma from "../component/Ferma";
 import PostFilter from "../component/PostFilter";
 import PostListDodo from "../component/PostListDodo";
 import Dodonation from "../component/UI/dodonation/Dodonation";
+import {useObserver} from "../hooks/useObserver";
 import Loader from "../component/UI/Loader/Loader";
 
 
 function Posts() {
     const [posts, setPosts] = useState([]);
-    const [modal, setModal]=useState(false);
-    const [filter,setFilter]=useState({sort:'',query:''});
-    const [totalPages, setTotalPages]=useState(0);
-    const [limit, setLimit]=useState(10);
-    const [page, setPage]=useState(1);
-    const sortedAndSearchedPost=usePosts(posts,filter.sort,filter.query);
+    const [modal, setModal] = useState(false);
+    const [filter, setFilter] = useState({sort: '', query: ''});
+    const [totalPages, setTotalPages] = useState(0);
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
+    const sortedAndSearchedPost = usePosts(posts, filter.sort, filter.query);
+    const lastElement = useRef()
 
-    const [fetchPosts,isPostsLoading,postError]= useFetching(async (limit,page)=>{
-        const response=await DodoService.getAll(limit,page);
-        setPosts(response.data)
+    const [fetchPosts, isPostsLoading, postError] = useFetching(async (limit, page) => {
+        const response = await DodoService.getAll(limit, page);
+        setPosts([...posts, ...response.data])
         const totalCount = response.headers['x-total-count']
-        setTotalPages(getPageCount(totalCount, limit))
+        setTotalPages(getPageCount(totalCount, limit));
     })
+    useObserver(lastElement, page < totalPages, isPostsLoading, () => {
+        setPage(page + 1);
+    })
+    useEffect(() => {
+        fetchPosts(limit, page)
+    }, [])
 
-    useEffect(()=>{
-        fetchPosts(limit,page)
-    },[])
 
-
-    const createPost= (newPost) =>{
+    const createPost = (newPost) => {
         setPosts([...posts, newPost])
         setModal(false)
     }
 
-    const removePost=(post)=>{
-        setPosts(posts.filter(p=>p.id !== post.id))
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
     }
-    const changePage=(page)=>{
+    const changePage = (page) => {
         setPage(page)
-        fetchPosts(limit,page)
     }
 
     return (
         <div className={"App"}>
 
             <Dodo/>
-            <MsButton style={{marginTop:30}} onClick={()=>setModal(true)}>
+            <MsButton style={{marginTop: 30}} onClick={() => setModal(true)}>
                 Создать Додо
             </MsButton>
             <button onClick={fetchPosts}>!Get Dodo!</button>
@@ -63,12 +66,12 @@ function Posts() {
                 filter={filter}
                 setFilter={setFilter}
             />
-            {postError&&
+            {postError &&
             <h1>Dodo erroros${postError}</h1>
             }
             {isPostsLoading
-                ? <div style={{display:'flex',justifyContent:'center',marginTop:50}}><Loader/></div>
-                :<PostListDodo remove={removePost} posts={sortedAndSearchedPost} title="Dodo number"/>
+                ? <div style={{display: 'flex', justifyContent: 'center', marginTop: 50}}><Loader/></div>
+                : <PostListDodo remove={removePost} posts={sortedAndSearchedPost} title="Dodo number"/>
             }
             <Dodonation page={page}
                         changePage={changePage}
@@ -78,4 +81,5 @@ function Posts() {
         </div>
     );
 }
+
 export default Posts;

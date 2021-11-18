@@ -2,7 +2,7 @@ import React from 'react';
 import MsImput from "./UI/imput/MsImput";
 import MySelect from "./UI/select/MsSelect";
 
-const PostFilter = ({filter,setFilter}) => {
+const PostFilter = ({filter, setFilter}) => {
     return (
         <div>
             <MsImput
@@ -12,11 +12,11 @@ const PostFilter = ({filter,setFilter}) => {
             />
             <MySelect
                 value={filter.sort}
-                onChange={selectedSort=>setFilter({...filter, sort:selectedSort})}
+                onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
                 defaultValue="Сортировка"
                 option={[
-                    {value:'title',name:'По Додо '},
-                    {value:'body',name:'По птице '},
+                    {value: 'title', name: 'По Додо '},
+                    {value: 'body', name: 'По птице '},
                 ]}
             />
         </div>

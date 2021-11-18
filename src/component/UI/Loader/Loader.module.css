@@ -1,15 +1,16 @@
-.loader{
+.loader {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     border: 1px dashed black;
     animation: rotate 1s infinite linear;
 }
+
 @keyframes rotate {
-    from{
+    from {
         transform: rotate(0deg) scale(0.5);
     }
-    to{
+    to {
         transform: rotate(360deg) scale(1.5);
     }
 }

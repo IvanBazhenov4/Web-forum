@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Erros = () => {
+const Errors = () => {
     return (
         <div>
             <h1 color={{color:'red'}}>
@@ -10,4 +10,4 @@ const Erros = () => {
     );
 };
 
-export default Erros;
+export default Errors;
