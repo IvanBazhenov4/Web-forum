@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import MsImput from "./UI/imput/MsImput";
+import MsInput from "./UI/input/MsInput";
 import MsButton from "./UI/button/MsButton";
 
 const Ferma = ({create}) => {
@@ -15,12 +15,12 @@ const Ferma = ({create}) => {
     const [post, setPost] = useState({title: '', body: ''})
     return (
         <form>
-            <MsImput
+            <MsInput
                 value={post.title}
                 onChange={e => setPost({...post, title: e.target.value})}
                 type="text"
                 placeholder="Egg holder"/>
-            <MsImput
+            <MsInput
                 value={post.body}
                 onChange={e => setPost({...post, body: e.target.value})}
                 type="text"

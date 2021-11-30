@@ -1,11 +1,11 @@
 import React from 'react';
-import MsImput from "./UI/imput/MsImput";
+import MsInput from "./UI/input/MsInput";
 import MySelect from "./UI/select/MsSelect";
 
 const PostFilter = ({filter, setFilter}) => {
     return (
         <div>
-            <MsImput
+            <MsInput
                 value={filter.query}
                 onChange={e => setFilter({...filter, query: e.target.value})}
                 placeholder="Поиск..."

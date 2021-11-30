@@ -1,9 +1,9 @@
 import React from 'react';
 import MsButton from "./UI/button/MsButton";
-import {useNavigate} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const PostDodo = (props) => {
-    const  router = useNavigate()
+    const  router = useHistory()
     return (
         <div className="post">
             <div className="post__content">

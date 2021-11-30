@@ -21,7 +21,6 @@ function App() {
     },[])
 
     return (
-
         <AuthContext.Provider value={{
             isAuth,
             setIsAuth,
@@ -29,9 +28,6 @@ function App() {
         }}>
             <BrowserRouter>
                 <Navbar/>
-                <div>
-                    123
-                </div>
                 <AppRouter/>
             </BrowserRouter>
         </AuthContext.Provider>

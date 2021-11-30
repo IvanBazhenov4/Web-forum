@@ -5,20 +5,19 @@ export default class DodoService {
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
             params: {
                 _limit: limit,
-                _page: page,
+                _page: page
             }
         })
         return response;
-
     }
 
-    static async getById(id){
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts/'+id )
+    static async getById(id) {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts/' + id)
         return response;
     }
-    static async getCommentsByPostId(id){
+
+    static async getCommentsByPostId(id) {
         const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
         return response;
     }
 }
-
