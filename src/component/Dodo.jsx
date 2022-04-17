@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 const Dodo = function ()  {
     const [dodo, setDodo] = useState(999)
+    
     function increment() {
         setDodo(dodo + 1)
     }
@@ -9,6 +10,7 @@ const Dodo = function ()  {
     function decrement() {
         setDodo(dodo - 1)
     }
+
     return (
         <div>
             <h1>{dodo}</h1>

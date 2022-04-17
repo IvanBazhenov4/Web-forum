@@ -4,6 +4,7 @@ import {useHistory} from "react-router-dom";
 
 const PostDodo = (props) => {
     const  router = useHistory()
+    
     return (
         <div className="post">
             <div className="post__content">

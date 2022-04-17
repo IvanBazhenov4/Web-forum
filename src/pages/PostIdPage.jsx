@@ -12,6 +12,7 @@ const PostIdPage = () => {
         const response = await DodoService.getById(id)
         setPost(response.data);
     })
+
     const [fetchComments, isComLoading, comError] = useFetching(async (id) => {
         const response = await DodoService.getCommentsByPostId(id)
         setComments(response.data);
@@ -29,9 +30,8 @@ const PostIdPage = () => {
                 ? <Loader/>
                 :  <div>{post.id}. {post.title}</div>
             }
-            <h1>
-                Комментарии
-            </h1>
+            <h1> Комментарии </h1>
+
             {isComLoading
                 ? <Loader/>
                 : <div>

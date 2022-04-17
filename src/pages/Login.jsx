@@ -16,9 +16,13 @@ const Login = () => {
         <div>
             <h1>Страница для логина</h1>
             <form onSubmit={login}>
+
                 <MsInput type="text" placeholder="Введите логин"/>
+
                 <MsInput type="password" placeholder="Введите пароль"/>
+
                 <MsButton>Войти</MsButton>
+
             </form>
         </div>
     );

@@ -13,6 +13,7 @@ const Ferma = ({create}) => {
     }
 
     const [post, setPost] = useState({title: '', body: ''})
+    
     return (
         <form>
             <MsInput

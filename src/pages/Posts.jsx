@@ -47,6 +47,7 @@ function Posts() {
     const removePost = (post) => {
         setPosts(posts.filter(p => p.id !== post.id))
     }
+    
     const changePage = (page) => {
         setPage(page)
     }
@@ -55,13 +56,15 @@ function Posts() {
         <div className="App">
 
             <Dodo/>
-            <MsButton style={{marginTop: 30}} onClick={() => setModal(true)}>
-                Создать Додо
-            </MsButton>
+
+            <MsButton style={{marginTop: 30}} onClick={() => setModal(true)}>Создать Додо</MsButton>
+
             <button onClick={fetchPosts}>!Get Dodo!</button>
+
             <MsModal visible={modal} setVisible={setModal}>
                 <Ferma create={createPost}/>
             </MsModal>
+
             <PostFilter
                 filter={filter}
                 setFilter={setFilter}
@@ -77,14 +80,19 @@ function Posts() {
                     {value:-1, name:'99'},
                 ]}
                 />
+
             {postError &&
             <h1>Dodo erroros${postError}</h1>
             }
+
             <PostListDodo remove={removePost} posts={sortedAndSearchedPost} title="Dodo number"/>
+
             <div ref={lastElement} style={{height: 20, background: 'red'}}/>
+
             {isPostsLoading &&
             <div style={{display: 'flex', justifyContent: 'center', marginTop: 50}}><Loader/></div> 
             }
+            
             <Dodonation page={page}
                         changePage={changePage}
                         totalPages={totalPages}
