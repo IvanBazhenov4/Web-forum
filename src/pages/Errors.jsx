@@ -4,7 +4,7 @@ const Errors = () => {
     return (
         <div>
             <h1 color={{color:'red'}}>
-               !!! Wrong Dodo!!!
+               !!! Wrong Dodo !!!
             </h1>
         </div>
     );

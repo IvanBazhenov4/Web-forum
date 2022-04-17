@@ -1,19 +1,19 @@
 import React, {useRef} from 'react';
 import {useEffect, useState} from "react";
+import DodoService from "../API/DodoService";
 import {usePosts} from "../hooks/useDodo";
 import {useFetching} from "../hooks/useFetching";
-import DodoService from "../API/DodoService";
 import {getPageCount} from "../utils/pages";
-import Dodo from "../component/Dodo";
 import MsButton from "../component/UI/button/MsButton";
-import MsModal from "../component/UI/MsModal/MsModal";
 import Ferma from "../component/Ferma";
+import MsModal from "../component/UI/MsModal/MsModal";
 import PostFilter from "../component/PostFilter";
 import PostListDodo from "../component/PostListDodo";
+import Loader from "../component/UI/Loader/Loader";
 import Dodonation from "../component/UI/dodonation/Dodonation";
 import {useObserver} from "../hooks/useObserver";
-import Loader from "../component/UI/Loader/Loader";
-
+import MySelect from "../component/UI/select/MsSelect";
+import Dodo from "../component/Dodo";
 
 function Posts() {
     const [posts, setPosts] = useState([]);
@@ -36,7 +36,7 @@ function Posts() {
     })
     useEffect(() => {
         fetchPosts(limit, page)
-    }, [])
+    }, [page, limit])
 
 
     const createPost = (newPost) => {
@@ -52,7 +52,7 @@ function Posts() {
     }
 
     return (
-        <div className={"App"}>
+        <div className="App">
 
             <Dodo/>
             <MsButton style={{marginTop: 30}} onClick={() => setModal(true)}>
@@ -66,12 +66,24 @@ function Posts() {
                 filter={filter}
                 setFilter={setFilter}
             />
+            <MySelect
+                value={limit}
+                onChange={value=>setLimit(value)}
+                defaultStatus="Posts on page"
+                option={[
+                    {value:5, name:'5'},
+                    {value:10, name:'10'},
+                    {value:25, name:'25'},
+                    {value:-1, name:'99'},
+                ]}
+                />
             {postError &&
             <h1>Dodo erroros${postError}</h1>
             }
-            {isPostsLoading
-                ? <div style={{display: 'flex', justifyContent: 'center', marginTop: 50}}><Loader/></div>
-                : <PostListDodo remove={removePost} posts={sortedAndSearchedPost} title="Dodo number"/>
+            <PostListDodo remove={removePost} posts={sortedAndSearchedPost} title="Dodo number"/>
+            <div ref={lastElement} style={{height: 20, background: 'red'}}/>
+            {isPostsLoading &&
+            <div style={{display: 'flex', justifyContent: 'center', marginTop: 50}}><Loader/></div> 
             }
             <Dodonation page={page}
                         changePage={changePage}
