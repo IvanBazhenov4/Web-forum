@@ -21,27 +21,31 @@ const PostIdPage = () => {
     useEffect(() => {
         fetchPostById(params.id)
         fetchComments(params.id)
-    }, [])
+    }, []);
 
     return (
         <div>
-            <h1>Вы открыли страницу поста c ID = {params.id}</h1>
+            <h1>
+                Вы открыли страницу поста c ID = {params.id}
+            </h1>
             {isLoading
                 ? <Loader/>
                 :  <div>{post.id}. {post.title}</div>
             }
-            <h1> Комментарии </h1>
+            <h1>
+                 Комментарии 
+            </h1>
 
             {isComLoading
                 ? <Loader/>
-                : <div>
+                :   <div>
                     {comments.map(comm =>
                         <div key={comm.id} style={{marginTop: 15}}>
                             <h5>{comm.email}</h5>
                             <div>{comm.body}</div>
                         </div>
                     )}
-                </div>
+                    </div>
             }
         </div>
     );

@@ -31,9 +31,11 @@ function Posts() {
         const totalCount = response.headers['x-total-count']
         setTotalPages(getPageCount(totalCount, limit));
     })
+    
     useObserver(lastElement, page < totalPages, isPostsLoading, () => {
         setPage(page + 1);
     })
+
     useEffect(() => {
         fetchPosts(limit, page)
     }, [page, limit])
@@ -47,7 +49,7 @@ function Posts() {
     const removePost = (post) => {
         setPosts(posts.filter(p => p.id !== post.id))
     }
-    
+
     const changePage = (page) => {
         setPage(page)
     }
@@ -82,7 +84,7 @@ function Posts() {
                 />
 
             {postError &&
-            <h1>Dodo erroros${postError}</h1>
+            <h1>Dodo erroros {postError}</h1>
             }
 
             <PostListDodo remove={removePost} posts={sortedAndSearchedPost} title="Dodo number"/>

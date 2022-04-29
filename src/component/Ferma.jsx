@@ -6,7 +6,7 @@ const Ferma = ({create}) => {
     const addNewDodo = (e) => {
         e.preventDefault()
         const NewPost = {
-            ...post, id: Date.now()
+            ...post, id:  Date.now()
         }
         create(NewPost)
         setPost({title: '', body: ''})
@@ -18,12 +18,12 @@ const Ferma = ({create}) => {
         <form>
             <MsInput
                 value={post.title}
-                onChange={e => setPost({...post, title: e.target.value})}
+                onChange={event => setPost({...post, title: event.target.value})}
                 type="text"
                 placeholder="Egg holder"/>
             <MsInput
                 value={post.body}
-                onChange={e => setPost({...post, body: e.target.value})}
+                onChange={event => setPost({...post, body: event.target.value})}
                 type="text"
                 placeholder="Egg reducer"/>
             <MsButton onClick={addNewDodo}>Make Dodo</MsButton>

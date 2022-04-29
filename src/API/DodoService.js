@@ -8,7 +8,8 @@ export default class DodoService {
                 _page: page
             }
         })
-        return response;
+         return response
+        ;
     }
 
     static async getById(id) {
