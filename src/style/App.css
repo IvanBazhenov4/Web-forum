@@ -17,7 +17,7 @@
 .post {
     display: flex;
     padding: 15px;
-    border: 2px solid gold;
+    border: 2px solid steelblue;
     margin-top: 15px;
     justify-content: space-between;
     align-items: center;
@@ -52,7 +52,7 @@
 
 .page {
     padding: 10px;
-    border: 1px solid gold;
+    border: 1px solid steelblue;
     cursor: pointer;
 }
 
